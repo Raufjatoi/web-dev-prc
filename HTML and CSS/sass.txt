@@ -1,0 +1,10 @@
+sass is just the extension to css , it help in like repeating stuffs 
+there is a file of that in extension to .scss where i show some code 
+it dont work on browser now until ya changed it to css so you have to 
+dowload the sass program for that and then use below command 
+
+# sass style.scss:style.css
+
+
+for auto 
+#sass --watch style.scss:style.css
