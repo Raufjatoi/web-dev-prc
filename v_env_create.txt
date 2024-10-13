@@ -1,0 +1,8 @@
+-- > step 1
+# python -m venv NAME
+
+-- > step 2
+# NAME\Scripts\activate
+
+-- > step 3 
+# deactivate

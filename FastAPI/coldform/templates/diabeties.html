@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="device-width=width, initial-scale=1.0">
+        <title>Diabeties check</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2 class="text-center">Do you have Diabeties?</h2>
+            <form action="/submit_diabeties" method="POST">
+                <div class="form-group">
+                    <label for="q1">Do you eat alot of sugar?</label>
+                    <select class="form-control" id="q1" name="q1">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="q2">Does your wonds tends tends to heal late ?</label>
+                    <select class="form-control" id="q2" name="q2">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="q3">Do you feel headachs more than usuall ?</label>
+                    <select class="form-control" id="q3" name="q3">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="q4">Do you sometimes feel like dizy? and then wants to eat some sweet ??</label>
+                    <select class="form-control" id="q4" name="q4">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="q5">Do you eat alot of sweets like me hehe?</label>
+                    <select class="form-control" id="q5" name="q5">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block">submit</button>
+            </form>
+        </div>
+    </body>
+</html>

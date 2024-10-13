@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Check</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#" style="color: red;">Heart</a></li>
+            <li><a href="#" style="color: blue;">Flu</a></li>
+            <li><a href="#" style="color: orange;">Cold</a></li>
+            <li><a href="#" style="color: pink;">Other</a></li>
+        </ul>
+    </nav>
+    
+    <h1>Disease Check</h1>
+    
+    <form action="/submit" method="post">
+        <label for="option">Select Disease:</label>
+        <select name="option" id="option" required>
+            <option value="heart">Heart</option>
+            <option value="flu">Flu</option>
+            <option value="cold">Cold</option>
+            <option value="other">Other</option>
+        </select>
+        
+        <label for="answer">Enter Answer:</label>
+        <input type="number" id="answer" name="answer" required>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if result %}
+    <h2>{{ result }}</h2>
+    {% endif %}
+</body>
+</html>

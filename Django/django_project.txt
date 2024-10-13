@@ -1,0 +1,7 @@
+#project 
+-- > django-admin startproject myproject
+#app 
+-- > python manage.py startapp myapp
+#run 
+-- > python manage.py runserver
+

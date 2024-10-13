@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #282c34;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.text-container {
+    font-size: 3em;
+    color: #61dafb;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid #61dafb;
+    width: 0;
+    animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 13ch; 
+    }
+    100% {
+        width: 20ch;
+    }
+}
+
+@keyframes blink-caret {
+    50% {
+        border-color: transparent;
+    }
+}

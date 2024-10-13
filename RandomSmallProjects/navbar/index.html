@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #282424;
+            color: white;
+        }
+        .navbar {
+            background-color: black;
+        }
+        .nav-link {
+            color: #686565;
+        }
+        .nav-link:hover{
+            color: white;
+        }
+        .form-section, .heading-section, .table-section, .form-types-section {
+            padding: 30px;
+            border-bottom: 1px solid #555;
+        }
+        table {
+            width: 100%;
+            color: white;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid white;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#form">Form</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#heading">Heading</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#table">Table</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#form-types">Form Types</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="form" class="form-section">
+        <h2>form</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input type="text" class="form-control" id="name" placeholder="your name ? ">
+            </div>
+            <div class="form-group">
+                <label for="age">age</label>
+                <input type="number" class="form-control" id="age" placeholder="your age ?">
+            </div>
+            <div class="form-group">
+                <label for="country">country</label>
+                <input type="text" class="form-control" id="country" placeholder="where from ?">
+            </div>
+            <button type="submit" class="btn btn-primary">sumitooO)</button>
+        </form>
+    </section>
+    <section id="heading" class="heading-section">
+        <h1>h1 : heading one </h>
+        <h2>h2 : heading two </h2>
+        <h3>.</h3>
+        <h4>.</h4>
+        <h5>.</h5>
+        <h6>h6 : Heading 6</h6>
+    </section>
+    <section id="table" class="table-section">
+        <h2>table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>student</th>
+                    <th>marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ahsan</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>Rauf</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <td>Umar</td>
+                    <td>88</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section id="form-types" class="form-types-section">
+        <h2>form types</h2>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail">email</label>
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter ur email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">password</label>
+                <input type="password" class="form-control" id="exampleInputPassword" placeholder="password not like password as a password 🙂">
+            </div>
+            <div class="form-group">
+                <label for="select">selectooo</label>
+                <select class="form-control" id="select">
+                    <option>op 1</option>
+                    <option>Opti 2</option>
+                    <option>option 3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
