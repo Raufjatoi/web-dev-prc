@@ -1,16 +1,39 @@
 {% extends "users/layout.html" %}
 
 {% block body %}
-
+<div class="container my-5">
+    
+    <!-- Message Block (for any login messages) -->
     {% if message %}
-        <div>{{ message }}</div>
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="password">
-        <input type="submit" value="Login">
-    </form>
+    <!-- Login Form -->
+    <div class="card bg-dark text-light p-4">
+        <h2 class="mb-4 text-center">Login</h2>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
+            </div>
+            
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+            
+            <!-- Submit Button -->
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary w-100" value="Login">
+            </div>
+        </form>
+    </div>
 
+</div>
 {% endblock %}

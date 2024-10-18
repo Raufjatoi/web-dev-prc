@@ -1,33 +1,45 @@
 {% extends "flights/layout.html" %}
 
 {% block body %}
-    <h1>Flight {{ flight.id }} </h1>
+<div class="container my-5">
+    <!-- Flight Title -->
+    <h1 class="display-5 text-light mb-4">Flight {{ flight.id }} Details</h1>
 
-    <ul>
-        <li>Origin : {{ flight.origin }} </li>
-        <li>Destinatoin : {{ flight.destination }}</li>
+    <!-- Flight Information -->
+    <ul class="list-group mb-4">
+        <li class="list-group-item bg-dark text-light">
+            <strong>Origin:</strong> {{ flight.origin }}
+        </li>
+        <li class="list-group-item bg-dark text-light">
+            <strong>Destination:</strong> {{ flight.destination }}
+        </li>
     </ul>
 
-    <h2>Passengers</h2>
-    <ul>
+    <!-- Passengers List -->
+    <h2 class="text-light mb-3">Passengers</h2>
+    <ul class="list-group mb-4">
         {% for passenger in passengers %}
-            <li> {{ passenger }} </li>
+            <li class="list-group-item bg-dark text-light">{{ passenger }}</li>
         {% empty %}
-            <li> No passengers. </li>
+            <li class="list-group-item bg-dark text-light">No passengers.</li>
         {% endfor %}
     </ul>
 
-    <h2> Add passenger </h2>
-    <form action="{% url 'book' flight.id %}" method="post">
+    <!-- Add Passenger Form -->
+    <h2 class="text-light mb-3">Add Passenger</h2>
+    <form action="{% url 'book' flight.id %}" method="post" class="mb-4">
         {% csrf_token %}
-        <select name="passenger">
-            {% for passenger in non_passengers %}
-                 <option value="{{ passenger.id }}">{{ passenger }}</option>
-            {% endfor %}
-        </select>    
-        <input type="submit">
+        <div class="input-group">
+            <select class="form-select" name="passenger" required>
+                <option selected disabled>Select Passenger</option>
+                {% for passenger in non_passengers %}
+                    <option value="{{ passenger.id }}">{{ passenger }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
     </form>
 
-    <a href="{% url 'index' %}">back to flight list</a>
-
+    <a href="{% url 'index' %}" class="btn btn-secondary">Back to Flight List</a>
+</div>
 {% endblock %}

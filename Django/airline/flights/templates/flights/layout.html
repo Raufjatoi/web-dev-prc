@@ -2,6 +2,61 @@
 <html lang="en">
     <head>
         <title> Flights </title>
+             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+body {
+    background-color: #000;
+    background-size: cover;
+    color: aliceblue;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Cool shadow for text */
+}
+
+.flight-list {
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+}
+.flight-item {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+.flight-link {
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 15px 30px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); /* Add shadow to make text pop */
+}
+.flight-link:hover {
+    background-color: #fff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .flight-link {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+}
+
+    </style>
     </head>
     <body>
         {% block body %}

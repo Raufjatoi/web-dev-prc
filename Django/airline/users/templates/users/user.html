@@ -1,14 +1,27 @@
 {% extends "users/layout.html" %}
 
 {% block body %}
+<div class="container my-5">
+    
+    <!-- Welcome Heading -->
+    <div class="card bg-dark text-light p-4">
+        <h1 class="text-center mb-4">Welcome, {{ request.user.username }}!</h1>
+        
+        <!-- User Info List -->
+        <ul class="list-group list-group-flush mb-4">
+            <li class="list-group-item bg-dark text-light">
+                <strong>Username:</strong> {{ request.user.username }}
+            </li>
+            <li class="list-group-item bg-dark text-light">
+                <strong>Email:</strong> {{ request.user.email }}
+            </li>
+        </ul>
 
-    <h1>Welcome , {{ request.user.username }} </h1>
+        <!-- Log Out Button -->
+        <div class="text-center">
+            <a href="{% url 'logout' %}" class="btn btn-danger w-100">Log Out</a>
+        </div>
+    </div>
 
-    <ul>
-        <li> Username : {{ request.user.username }} </li>
-        <li> Email : {{ request.user.email }}</li>
-    </ul>
-
-    <a href="{% url 'logout' %}">log out</a>
-
+</div>
 {% endblock %}

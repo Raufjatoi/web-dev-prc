@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange</title>
+    <style>
+        body {
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 200px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff; /* White button */
+            color: #000; /* Black text */
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #ddd; /* Light gray on hover */
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').onsubmit = function() {
+                const currency = document.querySelector('#currency').value.toUpperCase();
+                fetch(`https://api.exchangerate-api.com/v4/latest/USD`)
+                .then(response => response.json())
+                .then(data => {
+                    const rate = data.rates[currency];
+                    if (rate !== undefined) {
+                        document.querySelector('#result').innerHTML = `1 USD is equal to ${rate.toFixed(3)} ${currency}.`;
+                    } else {
+                        document.querySelector('#result').innerHTML = `Invalid currency code.`;
+                    }
+                })
+                .catch(error => {
+                    console.log("Error: ", error);
+                    document.querySelector('#result').innerHTML = `Error fetching data.`;
+                });
+                return false; // Prevent form submission
+            }
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <input id="currency" placeholder="Enter currency code (e.g., EUR)" type="text" required>
+        <input type="submit" value="Convert">
+    </form>
+    <div id="result"></div>
+</body>
+</html>
