@@ -1,0 +1,14 @@
+<!DOCTYPE html> <!-- html 5 version-->
+<html lang="en"> <!-- lan means language and en means im usin tha (en = english)-->
+<head>
+    <title> fligts </title>
+</head>
+<body>
+<h1>Available Flights</h1>
+<ul>
+    {% for flight in flights %}
+        <li><a href="{% url 'flight_detail' flight.id %}">{{ flight.flight_number }} to {{ flight.destination }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

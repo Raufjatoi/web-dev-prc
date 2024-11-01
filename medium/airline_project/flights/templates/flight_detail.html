@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Flight Details{% endblock %}
+
+{% block content %}
+<h1>Flight Details</h1>
+<h2>{{ flight.flight_number }}</h2>
+<p><strong>Destination:</strong> {{ flight.destination }}</p>
+<p><strong>Departure:</strong> {{ flight.departure }}</p>
+<p><strong>Date:</strong> {{ flight.date }}</p>
+
+<h3>Passengers</h3>
+<ul>
+    {% for booking in flight.booking_set.all %}
+        <li>{{ booking.passenger.name }} ({{ booking.passenger.email }})</li>
+    {% empty %}
+        <li>No passengers booked for this flight.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'flights_list' %}" class="btn btn-primary">Back to Flights</a>
+{% endblock %}

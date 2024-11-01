@@ -1,0 +1,71 @@
+/* General body styles */
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* Header styles */
+h1 {
+    color: #ffffff; /* White text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for the title */
+    margin-bottom: 40px;
+}
+
+/* Centered container */
+.container {
+    max-width: 800px; /* Limit container width */
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+/* Video styles */
+#video {
+    border-radius: 10px; /* Rounded corners for video */
+    max-width: 100%; /* Responsive video */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Canvas styles */
+#canvas {
+    position: absolute; /* Overlapping the video */
+    top: 0;
+    left: 0;
+    border-radius: 10px; /* Rounded corners for canvas */
+    max-width: 100%; /* Responsive canvas */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Result display styles */
+#result {
+    margin-top: 20px;
+    font-size: 1.2rem; /* Slightly larger text */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+    }
+
+    .container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+
+    #result {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.5rem; /* Further reduce font size for extra small screens */
+    }
+
+    .container {
+        margin: 10px; /* Reduce margins on extra small screens */
+    }
+}

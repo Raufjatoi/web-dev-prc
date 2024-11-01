@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Math Game</title>
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="text/babel">
+            function App() {
+                const [state, setState] = React.useState({
+                    num1: Math.floor(Math.random() * 10 + 1), 
+                    num2: Math.floor(Math.random() * 10 + 1),
+                    operation: randomOperation(), // Choose random operation
+                    response: "",
+                    score: 0,
+                    message: null, 
+                    messageClass: "" 
+                });
+
+                function randomOperation() {
+                    const operations = ['+', '-', '*', '/'];
+                    return operations[Math.floor(Math.random() * operations.length)];
+                }
+
+                function calculateAnswer(num1, num2, operation) {
+                    switch (operation) {
+                        case '+':
+                            return num1 + num2;
+                        case '-':
+                            return num1 - num2;
+                        case '*':
+                            return num1 * num2;
+                        case '/':
+                            return Math.floor(num1 / num2); // Integer division
+                        default:
+                            return 0;
+                    }
+                }
+
+                function updateResponse(event) {
+                    setState({
+                        ...state,
+                        response: event.target.value
+                    });
+                }
+
+                function inputKeyPress(event) {
+                    if (event.key === "Enter") {
+                        const answer = parseInt(state.response);
+                        const correctAnswer = calculateAnswer(state.num1, state.num2, state.operation);
+                        
+                        if (answer === correctAnswer) {
+                            setState({
+                                ...state,
+                                score: state.score + 1,
+                                message: "Correct!",
+                                messageClass: "alert alert-success", 
+                                num1: Math.floor(Math.random() * 10 + 1), 
+                                num2: Math.floor(Math.random() * 10 + 1),
+                                operation: randomOperation(), 
+                                response: ""
+                            });
+                        } else {
+                            setState({
+                                ...state,
+                                score: state.score - 1,
+                                message: `Wrong! The correct answer was ${correctAnswer}.`,
+                                messageClass: "alert alert-danger", 
+                                response: ""
+                            });
+                        }
+                    }
+                }
+
+                return (
+                    <div className="container text-center mt-5">
+                        <h1>Math Game</h1>
+                        <div className="my-3">What is {state.num1} {state.operation} {state.num2}?</div>
+                        <input 
+                            className="form-control w-50 mx-auto"
+                            onKeyPress={inputKeyPress}
+                            onChange={updateResponse}
+                            value={state.response}
+                            type="number"
+                            placeholder="Enter your answer"
+                        />
+                        <div className="my-3">Score: {state.score}</div>
+                        {state.message && <div className={state.messageClass}>{state.message}</div>}
+                    </div>
+                );
+            }
+
+            ReactDOM.render(<App />, document.querySelector("#app"));
+        </script>
+    </body>
+</html>

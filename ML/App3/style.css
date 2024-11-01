@@ -1,0 +1,25 @@
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 40px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}

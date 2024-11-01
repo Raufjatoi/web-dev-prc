@@ -1,0 +1,90 @@
+/* General body styles */
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+/* Header styles */
+h1 {
+    color: #ffffff; /* White text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for the title */
+    margin-bottom: 40px;
+}
+
+/* Centered container */
+.container {
+    max-width: 600px; /* Limit container width */
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+/* Input file styles */
+.form-control-file {
+    border-radius: 10px; /* Rounded corners for file input */
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+    color: white; /* White text color */
+}
+
+/* Image styles */
+#image {
+    border-radius: 10px; /* Rounded corners for the image */
+    transition: transform 0.2s; /* Smooth transform effect */
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#image:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Result display styles */
+#result {
+    margin-top: 20px;
+    font-size: 1.2rem; /* Slightly larger text */
+}
+
+/* List group styles */
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border: none; /* Remove border */
+    color: #ffffff; /* White text color */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Change background on hover */
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+    }
+
+    .container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+
+    #result {
+        font-size: 1rem; /* Smaller font size for mobile */
+    }
+
+    .form-control-file {
+        margin: 0 auto; /* Center the file input */
+        width: 90%; /* Make the file input responsive */
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.5rem; /* Further reduce font size for extra small screens */
+    }
+
+    .container {
+        margin: 10px; /* Reduce margins on extra small screens */
+    }
+}
