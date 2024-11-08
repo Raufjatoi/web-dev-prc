@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dijkstra's Algorithm Visualizer</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text color */
+        }
+        canvas {
+            border: 1px solid #ccc;
+            background-color: #222; /* Darker background for canvas */
+        }
+        #info {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        h1 {
+            color: #fff; /* White heading */
+            margin: 10px 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff; /* Bootstrap primary color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Dijkstra's Algorithm Visualizer</h1>
+    <canvas id="graphCanvas" width="800" height="600"></canvas>
+    <div id="info">Click and drag nodes to adjust their positions</div>
+    <button id="findPathButton">Find Shortest Path</button>
+
+    <script>
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const nodes = [
+            { id: 0, x: 100, y: 100, edges: [] },
+            { id: 1, x: 300, y: 200, edges: [] },
+            { id: 2, x: 500, y: 100, edges: [] },
+            { id: 3, x: 700, y: 300, edges: [] },
+            { id: 4, x: 400, y: 400, edges: [] }
+        ];
+
+        const edges = [
+            { from: 0, to: 1, weight: 4 },
+            { from: 0, to: 2, weight: 2 },
+            { from: 1, to: 2, weight: 5 },
+            { from: 1, to: 3, weight: 10 },
+            { from: 2, to: 3, weight: 3 },
+            { from: 3, to: 4, weight: 1 }
+        ];
+
+        let selectedNode = null;
+
+        // Mouse event listeners
+        canvas.addEventListener('mousedown', (event) => {
+            const mousePos = getMousePos(canvas, event);
+            selectedNode = findNodeAtPosition(mousePos.x, mousePos.y);
+        });
+
+        canvas.addEventListener('mousemove', (event) => {
+            if (selectedNode) {
+                const mousePos = getMousePos(canvas, event);
+                selectedNode.x = mousePos.x;
+                selectedNode.y = mousePos.y;
+                drawGraph();
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            selectedNode = null;
+        });
+
+        // Get mouse position on canvas
+        function getMousePos(canvas, event) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: event.clientX - rect.left,
+                y: event.clientY - rect.top
+            };
+        }
+
+        // Find node at mouse position
+        function findNodeAtPosition(x, y) {
+            return nodes.find(node => {
+                const dist = Math.sqrt((node.x - x) ** 2 + (node.y - y) ** 2);
+                return dist < 20; // radius of the node
+            });
+        }
+
+        // Draw the graph
+        function drawGraph() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawEdges();
+            drawNodes();
+        }
+
+        // Draw edges between nodes
+        function drawEdges() {
+            edges.forEach(edge => {
+                const fromNode = nodes[edge.from];
+                const toNode = nodes[edge.to];
+                ctx.beginPath();
+                ctx.moveTo(fromNode.x, fromNode.y);
+                ctx.lineTo(toNode.x, toNode.y);
+                ctx.strokeStyle = '#fff'; // White edges
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillText(edge.weight, (fromNode.x + toNode.x) / 2, (fromNode.y + toNode.y) / 2);
+            });
+        }
+
+        // Draw nodes
+        function drawNodes() {
+            nodes.forEach((node, index) => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                ctx.fillStyle = index % 2 === 0 ? '#ff0000' : '#0000ff'; // Alternate colors: red and blue
+                ctx.fill();
+                ctx.strokeStyle = '#fff'; // White border for nodes
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillStyle = '#fff'; // White text for node IDs
+                ctx.fillText(node.id, node.x - 5, node.y + 5);
+            });
+        }
+
+        // Dijkstra's algorithm
+        function dijkstra(src) {
+            const dist = Array(nodes.length).fill(Infinity);
+            const prev = Array(nodes.length).fill(null);
+            const visited = Array(nodes.length).fill(false);
+
+            dist[src] = 0;
+
+            for (let count = 0; count < nodes.length - 1; count++) {
+                let u = minDistance(dist, visited);
+                visited[u] = true;
+
+                edges.forEach(edge => {
+                    if (edge.from === u) {
+                        const v = edge.to;
+                        if (!visited[v] && dist[u] !== Infinity && dist[u] + edge.weight < dist[v]) {
+                            dist[v] = dist[u] + edge.weight;
+                            prev[v] = u;
+                        }
+                    }
+                });
+            }
+
+            return { dist, prev };
+        }
+
+        // Get the node with the minimum distance
+        function minDistance(dist, visited) {
+            let min = Infinity, minIndex;
+            for (let v = 0; v < dist.length; v++) {
+                if (!visited[v] && dist[v] <= min) {
+                    min = dist[v];
+                    minIndex = v;
+                }
+            }
+            return minIndex;
+        }
+
+        // Find and draw the shortest path
+        function findAndDrawShortestPath() {
+            const { dist, prev } = dijkstra(0); // Start from node 0
+            const path = [];
+            let currentNode = nodes.length - 1; // Target node is the last node
+
+            while (currentNode !== null) {
+                path.push(currentNode);
+                currentNode = prev[currentNode];
+            }
+
+            path.reverse(); // Reverse the path to get the correct order
+            drawPath(path);
+        }
+
+        // Draw the shortest path on the canvas
+        function drawPath(path) {
+            ctx.strokeStyle = 'yellow'; // Color for the path
+            ctx.lineWidth = 4;
+
+            for (let i = 0; i < path.length - 1; i++) {
+                const fromNode = nodes[path[i]];
+                const toNode = nodes[path[i + 1]];
+                ctx.beginPath();
+                ctx.moveTo(fromNode.x, fromNode.y);
+                ctx.lineTo(toNode.x, toNode.y);
+                ctx.stroke();
+            }
+        }
+
+        // Event listener for the button
+        document.getElementById('findPathButton').addEventListener('click', findAndDrawShortestPath);
+
+        drawGraph(); // Initial draw
+    </script>
+</body>
+</html>
